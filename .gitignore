@@ -1,0 +1,14 @@
+# Local IPN Hand data and archived development history
+data/
+backup/
+
+# Python/test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local editor/system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

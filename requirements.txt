@@ -1,0 +1,7 @@
+numpy
+scipy
+torch
+PyYAML
+opencv-python
+mediapipe
+pytest

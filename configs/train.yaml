@@ -1,0 +1,150 @@
+schema_version: 1  # released final-model training protocol
+seed: 1234
+
+split_protocol: official_train_test
+checkpoint_policy: last_epoch
+test_monitor_interval: 1
+test_monitor_for_checkpoint_selection: false
+test_monitor_for_early_stopping: false
+
+# Train the frame backbone first; this checkpoint remains frozen here.
+backbone:
+  architecture: causal_tcn
+  checkpoint: outputs/training/backbone/backbone_seed1234/checkpoints/last.pt
+  checkpoint_sha256: ""
+  freeze: true
+  strict_fp32_tf32_disabled: true
+
+feature_builder:
+  coordinate_source: image_xyz
+  motion_lags: [1]
+  max_hold_frames: 5
+  missing_clip_frames: 30
+  include_handedness: true
+
+targets:
+  boundary_radius: 2
+  query_target: completed_event
+  interval_convention: zero_based_half_open
+  target_window_frames: 256
+  left_censored_start_loss: false
+  left_censored_tiou_loss: false
+  final_partial_query_flush: true
+  ownership_interval: previous_query_time_open_current_query_time_closed
+
+model:
+  input_dim: 135
+  hidden_dim: 128
+  num_frame_classes: 14
+  kernel_size: 3
+  dilations: [1, 2, 4, 8, 16, 32]
+  num_query_classes: 14       # no-event + 13 gestures
+  num_queries: 6
+  query_dim: 128
+  attention_heads: 4
+  decoder_layers: 1
+  feedforward_dim: 256
+  query_stride: 4
+  frame_memory_length: 256
+  dropout: 0.1
+
+matching:
+  class_cost: 2.0
+  boundary_l1_cost: 5.0
+  tiou_cost: 2.0
+
+loss:
+  frame: 1.0
+  query_class: 2.0
+  boundary_l1: 5.0
+  tiou: 2.0
+  eos_coef: 0.1
+  classification_normalization: matched_and_unmatched_separate
+
+training:
+  # One full-video exposure is ~4.5x the supervised frames of a backbone epoch;
+  # 20 epochs therefore slightly exceed its 80-epoch frame exposure.
+  protocol: full_video_sequential_tbptt
+  epochs: 20
+  video_batch_size: 32
+  query_chunk_steps: 32
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  scheduler: cosine
+  amp: false
+  num_workers: 0
+  shuffle_video_streams: true
+
+encoded_cache:
+  video_batch_size: 8
+  dtype: float32
+
+test_monitor:
+  video_batch_size: 52
+
+# Fixed before Official Test. Query is the final-event gate; frame output remains
+# available as an ongoing/early hint and as a fusion consistency check.
+query_decoder:
+  score_threshold: 0.30
+  strong_score_threshold: 0.55
+  min_event_frames: 8
+  cooldown_frames: 6
+  dedup_gap_frames: 8
+  dedup_tiou: 0.5
+  fusion_min_tiou: 0.10
+  fusion_max_boundary_gap: 32
+  fusion_query_weight: 0.75
+
+frame_decoder:
+  ema_alpha: 0.6
+  activation_threshold: 0.45
+  sustain_threshold: 0.25
+  background_threshold: 0.60
+  boundary_threshold: 0.60
+  candidate_frames: 3
+  end_confirm_frames: 3
+  switch_confirm_frames: 3
+  min_event_frames: 8
+  cooldown_frames: 6
+  dedup_gap_frames: 8
+  dedup_tiou: 0.5
+
+evaluation:
+  metric_schema_version: 2
+  primary_output: fusion
+  primary_metric: levenshtein_accuracy
+  constraints:
+    - event_f1_at_0_5
+    - false_positive_per_minute
+    - completion_delay_frames
+    - parameter_count
+    - p95_latency_ms
+  save_frame_only: true
+  save_query_only: true
+  save_fusion: true
+  # Prevent an empty-prediction system (Lev.Acc=0) from looking deceptively useful.
+  effectiveness_gate:
+    levenshtein_delta_min: 0.0
+    event_f1_at_0_5_delta_min: 0.0
+    event_recall_at_0_5_ratio_min: 0.95
+    false_positive_per_minute_must_not_increase: true
+    predicted_events_to_gt_min_ratio: 0.5
+  statistical_check:
+    method: paired_video_bootstrap
+    samples: 10000
+    confidence: 0.95
+
+resource_gate:
+  parameter_count_max: 1000000
+  fp32_state_dict_mib_max: 4.0
+  per_stream_state_kib_max: 256
+  recorded_video_p95_ms_max: 33.33
+  recorded_video_fps_min: 30.0
+
+runtime:
+  device: auto
+  warmup_frames: 64
+  timed_frames: 1000
+  repeats: 3
+  cpu_threads: 1

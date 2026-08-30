@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "run_id": "1CM1_1_R_#217_20260830_143425",
+  "created_at": "2026-08-30T14:34:49.277079+08:00",
+  "status": "completed",
+  "stopped_reason": "max_frames",
+  "model": {
+    "architecture": "gesture_detection_mqtcn",
+    "checkpoint_path": "D:\\aProject\\GestureDetectection\\outputs\\model\\checkpoints\\final.pt",
+    "checkpoint_sha256": "3cd8572423e85cc457863122bb6e120a2fea28e1caecec26c86671cc4b77ac68",
+    "selected_epoch": 20,
+    "parameter_count": 373408,
+    "trainable_parameter_count": 251536,
+    "config_path": "D:\\aProject\\GestureDetectection\\configs\\runtime.yaml",
+    "config_sha256": "66ec4a27942002c9a633fad5f1d30b3d656f139761c8ecdb1b8e545dd068face",
+    "primary_output": "fusion",
+    "query_stride": 4,
+    "frame_memory_length": 256,
+    "precision": "fp32"
+  },
+  "hand_landmarker": {
+    "model_path": "D:\\aProject\\GestureDetectection\\assets\\hand_landmarker.task",
+    "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+    "min_detection_confidence": 0.5,
+    "min_presence_confidence": 0.5,
+    "min_tracking_confidence": 0.5
+  },
+  "source": {
+    "kind": "manifest_video",
+    "source_id": "1CM1_1_R_#217",
+    "path": "D:\\aProject\\GestureDetectection\\data\\raw\\aligned_videos\\1CM1_1_R_#217.mp4",
+    "split": "test",
+    "nominal_fps": 30.0,
+    "ground_truth": [
+      {
+        "class_id": 11,
+        "class_name": "Zoom in",
+        "class_code": "G10",
+        "official_class_id": 13,
+        "start_frame": 28,
+        "end_frame_exclusive": 72
+      },
+      {
+        "class_id": 0,
+        "class_name": "Pointing with one finger",
+        "class_code": "B0A",
+        "official_class_id": 2,
+        "start_frame": 72,
+        "end_frame_exclusive": 235
+      },
+      {
+        "class_id": 8,
+        "class_name": "Open twice",
+        "class_code": "G07",
+        "official_class_id": 10,
+        "start_frame": 235,
+        "end_frame_exclusive": 260
+      },
+      {
+        "class_id": 0,
+        "class_name": "Pointing with one finger",
+        "class_code": "B0A",
+        "official_class_id": 2,
+        "start_frame": 260,
+        "end_frame_exclusive": 448
+      },
+      {
+        "class_id": 12,
+        "class_name": "Zoom out",
+        "class_code": "G11",
+        "official_class_id": 14,
+        "start_frame": 448,
+        "end_frame_exclusive": 509
+      },
+      {
+        "class_id": 1,
+        "class_name": "Pointing with two fingers",
+        "class_code": "B0B",
+        "official_class_id": 3,
+        "start_frame": 509,
+        "end_frame_exclusive": 756
+      },
+      {
+        "class_id": 7,
+        "class_name": "Throw right",
+        "class_code": "G06",
+        "official_class_id": 9,
+        "start_frame": 756,
+        "end_frame_exclusive": 788
+      },
+      {
+        "class_id": 1,
+        "class_name": "Pointing with two fingers",
+        "class_code": "B0B",
+        "official_class_id": 3,
+        "start_frame": 788,
+        "end_frame_exclusive": 1064
+      },
+      {
+        "class_id": 5,
+        "class_name": "Throw down",
+        "class_code": "G04",
+        "official_class_id": 7,
+        "start_frame": 1064,
+        "end_frame_exclusive": 1101
+      },
+      {
+        "class_id": 1,
+        "class_name": "Pointing with two fingers",
+        "class_code": "B0B",
+        "official_class_id": 3,
+        "start_frame": 1101,
+        "end_frame_exclusive": 1353
+      },
+      {
+        "class_id": 4,
+        "class_name": "Throw up",
+        "class_code": "G03",
+        "official_class_id": 6,
+        "start_frame": 1883,
+        "end_frame_exclusive": 1938
+      },
+      {
+        "class_id": 0,
+        "class_name": "Pointing with one finger",
+        "class_code": "B0A",
+        "official_class_id": 2,
+        "start_frame": 1938,
+        "end_frame_exclusive": 2168
+      },
+      {
+        "class_id": 10,
+        "class_name": "Double click with two fingers",
+        "class_code": "G09",
+        "official_class_id": 12,
+        "start_frame": 2168,
+        "end_frame_exclusive": 2194
+      },
+      {
+        "class_id": 0,
+        "class_name": "Pointing with one finger",
+        "class_code": "B0A",
+        "official_class_id": 2,
+        "start_frame": 2194,
+        "end_frame_exclusive": 2407
+      },
+      {
+        "class_id": 3,
+        "class_name": "Click with two fingers",
+        "class_code": "G02",
+        "official_class_id": 5,
+        "start_frame": 2860,
+        "end_frame_exclusive": 2906
+      },
+      {
+        "class_id": 1,
+        "class_name": "Pointing with two fingers",
+        "class_code": "B0B",
+        "official_class_id": 3,
+        "start_frame": 2906,
+        "end_frame_exclusive": 3151
+      },
+      {
+        "class_id": 9,
+        "class_name": "Double click with one finger",
+        "class_code": "G08",
+        "official_class_id": 11,
+        "start_frame": 3387,
+        "end_frame_exclusive": 3414
+      },
+      {
+        "class_id": 0,
+        "class_name": "Pointing with one finger",
+        "class_code": "B0A",
+        "official_class_id": 2,
+        "start_frame": 3414,
+        "end_frame_exclusive": 3549
+      },
+      {
+        "class_id": 2,
+        "class_name": "Click with one finger",
+        "class_code": "G01",
+        "official_class_id": 4,
+        "start_frame": 3549,
+        "end_frame_exclusive": 3587
+      },
+      {
+        "class_id": 1,
+        "class_name": "Pointing with two fingers",
+        "class_code": "B0B",
+        "official_class_id": 3,
+        "start_frame": 3587,
+        "end_frame_exclusive": 3755
+      },
+      {
+        "class_id": 6,
+        "class_name": "Throw left",
+        "class_code": "G05",
+        "official_class_id": 8,
+        "start_frame": 3755,
+        "end_frame_exclusive": 3798
+      }
+    ]
+  },
+  "runtime": {
+    "device": "cuda",
+    "cpu_threads": 1,
+    "display_canvas": {
+      "width": 1280,
+      "height": 720,
+      "layout": "letterboxed_video_with_right_information_panel"
+    },
+    "frames_processed": 300,
+    "skeleton_valid_frames": 276,
+    "skeleton_valid_ratio": 0.92,
+    "state_reset_count": 1,
+    "query_execution_count": 69,
+    "status_counts": {
+      "reset_missing": 1,
+      "waiting_for_skeleton": 23,
+      "processed_after_reset": 1,
+      "processed": 275
+    },
+    "wall_seconds": 24.1586254,
+    "processing_fps": 12.41792506952817,
+    "latency": {
+      "capture_decode": {
+        "count": 300,
+        "mean_ms": 0.9146396666667226,
+        "p50_ms": 0.6484000000011036,
+        "p95_ms": 1.2797400000001957,
+        "max_ms": 60.1225000000003
+      },
+      "mediapipe": {
+        "count": 300,
+        "mean_ms": 41.0108326666668,
+        "p50_ms": 37.486649999999955,
+        "p95_ms": 65.13207499999842,
+        "max_ms": 100.08399999999895
+      },
+      "feature_and_model": {
+        "count": 300,
+        "mean_ms": 21.54175733333329,
+        "p50_ms": 8.986300000000114,
+        "p95_ms": 20.603609999999684,
+        "max_ms": 2011.1656
+      },
+      "end_to_end_with_render": {
+        "count": 300,
+        "mean_ms": 76.08330466666679,
+        "p50_ms": 60.00154999999996,
+        "p95_ms": 98.10054499999907,
+        "max_ms": 2080.7548
+      }
+    }
+  },
+  "events": {
+    "frame": [
+      {
+        "class_id": 11,
+        "start_frame": 32,
+        "end_frame_exclusive": 42,
+        "score": 0.6475113032841849,
+        "emitted_at_frame": 43,
+        "class_name": "Zoom in",
+        "start_seconds": 1.0666666666666667,
+        "end_seconds": 1.4
+      },
+      {
+        "class_id": 0,
+        "start_frame": 77,
+        "end_frame_exclusive": 85,
+        "score": 0.8992625214272483,
+        "emitted_at_frame": 86,
+        "class_name": "Pointing with one finger",
+        "start_seconds": 2.566666666666667,
+        "end_seconds": 2.8333333333333335
+      },
+      {
+        "class_id": 0,
+        "start_frame": 161,
+        "end_frame_exclusive": 173,
+        "score": 0.8813538233617564,
+        "emitted_at_frame": 174,
+        "class_name": "Pointing with one finger",
+        "start_seconds": 5.366666666666666,
+        "end_seconds": 5.766666666666667
+      },
+      {
+        "class_id": 8,
+        "start_frame": 246,
+        "end_frame_exclusive": 262,
+        "score": 0.6788247846224319,
+        "emitted_at_frame": 263,
+        "class_name": "Open twice",
+        "start_seconds": 8.2,
+        "end_seconds": 8.733333333333333
+      },
+      {
+        "class_id": 0,
+        "start_frame": 266,
+        "end_frame_exclusive": 300,
+        "score": 0.9816204974557177,
+        "emitted_at_frame": 299,
+        "class_name": "Pointing with one finger",
+        "start_seconds": 8.866666666666667,
+        "end_seconds": 10.0
+      }
+    ],
+    "query": [
+      {
+        "class_id": 12,
+        "start_frame": 24,
+        "end_frame_exclusive": 43,
+        "score": 0.8925421913069614,
+        "emitted_at_frame": 43,
+        "emitted_at_prefix": 44,
+        "source": "query",
+        "query_slot": 1,
+        "class_name": "Zoom out",
+        "start_seconds": 0.8,
+        "end_seconds": 1.4333333333333333
+      },
+      {
+        "class_id": 11,
+        "start_frame": 24,
+        "end_frame_exclusive": 72,
+        "score": 0.9719543787733915,
+        "emitted_at_frame": 71,
+        "emitted_at_prefix": 72,
+        "source": "query",
+        "query_slot": 5,
+        "class_name": "Zoom in",
+        "start_seconds": 0.8,
+        "end_seconds": 2.4
+      },
+      {
+        "class_id": 0,
+        "start_frame": 39,
+        "end_frame_exclusive": 235,
+        "score": 0.9983001509496358,
+        "emitted_at_frame": 235,
+        "emitted_at_prefix": 236,
+        "source": "query",
+        "query_slot": 5,
+        "class_name": "Pointing with one finger",
+        "start_seconds": 1.3,
+        "end_seconds": 7.833333333333333
+      },
+      {
+        "class_id": 8,
+        "start_frame": 217,
+        "end_frame_exclusive": 262,
+        "score": 0.965297767979688,
+        "emitted_at_frame": 263,
+        "emitted_at_prefix": 264,
+        "source": "query",
+        "query_slot": 2,
+        "class_name": "Open twice",
+        "start_seconds": 7.233333333333333,
+        "end_seconds": 8.733333333333333
+      }
+    ],
+    "fusion": [
+      {
+        "class_id": 0,
+        "start_frame": 24,
+        "end_frame_exclusive": 159,
+        "score": 0.9230624827927788,
+        "emitted_at_frame": 159,
+        "emitted_at_prefix": 160,
+        "source": "query_strong",
+        "query_slot": 5,
+        "class_name": "Pointing with one finger",
+        "start_seconds": 0.8,
+        "end_seconds": 5.3
+      },
+      {
+        "class_id": 11,
+        "start_frame": 26,
+        "end_frame_exclusive": 55,
+        "score": 0.5827007257768326,
+        "emitted_at_frame": 59,
+        "emitted_at_prefix": 60,
+        "source": "fusion",
+        "query_slot": 3,
+        "frame_tiou": 0.2857142857142857,
+        "class_name": "Zoom in",
+        "start_seconds": 0.8666666666666667,
+        "end_seconds": 1.8333333333333333
+      },
+      {
+        "class_id": 8,
+        "start_frame": 224,
+        "end_frame_exclusive": 262,
+        "score": 0.82206127630106,
+        "emitted_at_frame": 263,
+        "emitted_at_prefix": 264,
+        "source": "fusion",
+        "query_slot": 2,
+        "frame_tiou": 0.35555555555555557,
+        "class_name": "Open twice",
+        "start_seconds": 7.466666666666667,
+        "end_seconds": 8.733333333333333
+      }
+    ]
+  },
+  "artifacts": {
+    "annotated_video": null,
+    "event_json": "D:\\aProject\\GestureDetectection\\outputs\\demo\\video_validation.json"
+  },
+  "error": null
+}
